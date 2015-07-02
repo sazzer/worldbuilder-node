@@ -1,0 +1,20 @@
+{
+    "name": "worldbuilder-node",
+    "version": "0.0.1",
+    "description": "",
+    "scripts": {
+    }, 
+    "engines": {
+        "node": ">=0.12"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sazzer/worldbuilder-node.git"
+    },
+    "author": "Graham Cox <graham@grahamcox.co.uk>",
+    "bugs": {
+        "url": "https://github.com/sazzer/worldbuilder-node/issues"
+    },
+    "dependencies": {
+    }
+}
