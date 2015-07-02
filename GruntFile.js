@@ -2,6 +2,7 @@ var path = require('path');
 
 var targetDir = 'target';
 var targetMainDir = path.join(targetDir, 'main');
+var targetTestDir = path.join(targetDir, 'test');
 
 module.exports = function(grunt) {
     require('jit-grunt')(grunt, {
@@ -20,9 +21,23 @@ module.exports = function(grunt) {
             options: {
                 config: 'eslintrc.json'
             },
-            server: [
-                'src/server/main/**/*.js'
-            ]
+            server: {
+                files: [{
+                    expand: true, 
+                    cwd: 'src/server/main',
+                    src: ['**/*.js']
+                }]
+            },
+            test: {
+                options: {
+                    envs: ['mocha']
+                },
+                files: [{
+                    expand: true, 
+                    cwd: 'src/server/test',
+                    src: ['**/*.js']
+                }]
+            }
         },
         env: {
             server: {
@@ -41,6 +56,24 @@ module.exports = function(grunt) {
                     src: ['**/*.js'],
                     dest: targetMainDir
                 }]
+            },
+            test: {
+                files: [{
+                    expand: true,
+                    cwd: 'src/server/test',
+                    src: ['**/*.js'],
+                    dest: targetTestDir
+                }]
+            }
+        },
+        mochaTest: {
+            test: {
+                options: {
+                    reporter: 'spec',
+                    quiet: false,
+                    clearRequireCache: true
+                },
+                src: [path.join(targetTestDir, '**/*.js')]
             }
         },
         execute: {
@@ -55,7 +88,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build', ['eslint:server', 'babel:server']);
     grunt.registerTask('run', ['build', 'env:server', 'execute:server']);
-    grunt.registerTask('test', ['build']);
+    grunt.registerTask('test', ['build', 'eslint:test', 'babel:test', 'env:server', 'mochaTest:test']);
 
     grunt.registerTask('default', ['test']);
 };
