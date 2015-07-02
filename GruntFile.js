@@ -1,17 +1,17 @@
-var path = require('path');
+var path = require("path");
 
-var targetDir = 'target';
-var targetMainDir = path.join(targetDir, 'main');
-var targetTestDir = path.join(targetDir, 'test');
+var targetDir = "target";
+var targetMainDir = path.join(targetDir, "main");
+var targetTestDir = path.join(targetDir, "test");
 
 module.exports = function(grunt) {
-    require('jit-grunt')(grunt, {
-        eslint: 'eslint-grunt'
+    require("jit-grunt")(grunt, {
+        eslint: "eslint-grunt"
     });
-    require('time-grunt')(grunt);
+    require("time-grunt")(grunt);
 
     grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
+        pkg: grunt.file.readJSON("package.json"),
         clean: {
             build: {
                 src: targetDir
@@ -19,23 +19,23 @@ module.exports = function(grunt) {
         },
         eslint: {
             options: {
-                config: 'eslintrc.json'
+                config: "eslintrc.json"
             },
             server: {
                 files: [{
                     expand: true, 
-                    cwd: 'src/server/main',
-                    src: ['**/*.js']
+                    cwd: "src/server/main",
+                    src: ["**/*.js"]
                 }]
             },
             test: {
                 options: {
-                    envs: ['mocha']
+                    envs: ["mocha"]
                 },
                 files: [{
                     expand: true, 
-                    cwd: 'src/server/test',
-                    src: ['**/*.js']
+                    cwd: "src/server/test",
+                    src: ["**/*.js"]
                 }]
             }
         },
@@ -47,21 +47,21 @@ module.exports = function(grunt) {
         babel: {
             options: {
                 sourceMap: true,
-                optional: 'runtime'
+                optional: "runtime"
             },
             server: {
                 files: [{
                     expand: true,
-                    cwd: 'src/server/main',
-                    src: ['**/*.js'],
+                    cwd: "src/server/main",
+                    src: ["**/*.js"],
                     dest: targetMainDir
                 }]
             },
             test: {
                 files: [{
                     expand: true,
-                    cwd: 'src/server/test',
-                    src: ['**/*.js'],
+                    cwd: "src/server/test",
+                    src: ["**/*.js"],
                     dest: targetTestDir
                 }]
             }
@@ -69,16 +69,16 @@ module.exports = function(grunt) {
         mochaTest: {
             test: {
                 options: {
-                    reporter: 'spec',
+                    reporter: "spec",
                     quiet: false,
                     clearRequireCache: true
                 },
-                src: [path.join(targetTestDir, '**/*.js')]
+                src: [path.join(targetTestDir, "**/*.js")]
             }
         },
         execute: {
             server: {
-                src: path.join(targetMainDir, 'main.js'),
+                src: path.join(targetMainDir, "main.js"),
                 options: {
                     cwd: targetMainDir
                 }
@@ -86,9 +86,9 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('build', ['eslint:server', 'babel:server']);
-    grunt.registerTask('run', ['build', 'env:server', 'execute:server']);
-    grunt.registerTask('test', ['build', 'eslint:test', 'babel:test', 'env:server', 'mochaTest:test']);
+    grunt.registerTask("build", ["eslint:server", "babel:server"]);
+    grunt.registerTask("run", ["build", "env:server", "execute:server"]);
+    grunt.registerTask("test", ["build", "eslint:test", "babel:test", "env:server", "mochaTest:test"]);
 
-    grunt.registerTask('default', ['test']);
+    grunt.registerTask("default", ["test"]);
 };
