@@ -6,6 +6,7 @@ var targetTestDir = path.join(targetDir, "test");
 
 module.exports = function(grunt) {
     require("jit-grunt")(grunt, {
+        mochacli: 'grunt-mocha-cli'
     });
     require("time-grunt")(grunt);
 
@@ -65,14 +66,14 @@ module.exports = function(grunt) {
                 }]
             }
         },
-        mochaTest: {
+        mochacli: {
             test: {
                 options: {
+                    recursive: true,
                     reporter: "spec",
-                    quiet: false,
-                    clearRequireCache: true
-                },
-                src: [path.join(targetTestDir, "**/*.js")]
+                    growl: true,
+                    files: [targetTestDir]
+                }
             }
         },
         watch: {
@@ -94,17 +95,14 @@ module.exports = function(grunt) {
         },
         execute: {
             server: {
-                src: path.join(targetMainDir, "main.js"),
-                options: {
-                    cwd: targetMainDir
-                }
+                src: path.join(targetMainDir, "main.js")
             }
         }
     });
 
     grunt.registerTask("build", ["eslint:server", "babel:server"]);
     grunt.registerTask("run", ["build", "env:server", "execute:server"]);
-    grunt.registerTask("test", ["build", "eslint:test", "babel:test", "env:server", "mochaTest:test"]);
+    grunt.registerTask("test", ["build", "eslint:test", "babel:test", "env:server", "mochacli:test"]);
 
     grunt.registerTask("default", ["test"]);
 };
