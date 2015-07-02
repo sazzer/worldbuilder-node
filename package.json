@@ -1,20 +1,29 @@
 {
-    "name": "worldbuilder-node",
-    "version": "0.0.1",
-    "description": "",
-    "scripts": {
-    }, 
-    "engines": {
-        "node": ">=0.12"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/sazzer/worldbuilder-node.git"
-    },
-    "author": "Graham Cox <graham@grahamcox.co.uk>",
-    "bugs": {
-        "url": "https://github.com/sazzer/worldbuilder-node/issues"
-    },
-    "dependencies": {
-    }
+  "name": "worldbuilder-node",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+      "install": "grunt",
+      "test": "grunt test",
+      "start": "grunt run"
+  },
+  "engines": {
+    "node": ">=0.12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sazzer/worldbuilder-node.git"
+  },
+  "author": "Graham Cox <graham@grahamcox.co.uk>",
+  "bugs": {
+    "url": "https://github.com/sazzer/worldbuilder-node/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jit-grunt": "~0.9.1",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-cli": "~0.1.13",
+    "time-grunt": "~1.2.1",
+    "grunt": "~0.4.5"
+  }
 }
