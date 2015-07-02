@@ -1,3 +1,3 @@
-var hello = () => console.log("Hello");
+const hello = () => console.log("Hello");
 
 hello();

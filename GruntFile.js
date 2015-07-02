@@ -5,6 +5,7 @@ var targetMainDir = path.join(targetDir, 'main');
 
 module.exports = function(grunt) {
     require('jit-grunt')(grunt, {
+        eslint: 'eslint-grunt'
     });
     require('time-grunt')(grunt);
 
@@ -14,6 +15,14 @@ module.exports = function(grunt) {
             build: {
                 src: targetDir
             }
+        },
+        eslint: {
+            options: {
+                config: 'eslintrc.json'
+            },
+            server: [
+                'src/server/main/**/*.js'
+            ]
         },
         env: {
             server: {
@@ -44,7 +53,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('build', ['babel:server']);
+    grunt.registerTask('build', ['eslint:server', 'babel:server']);
     grunt.registerTask('run', ['build', 'env:server', 'execute:server']);
     grunt.registerTask('test', ['build']);
 
