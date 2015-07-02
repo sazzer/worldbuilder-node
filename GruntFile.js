@@ -6,7 +6,6 @@ var targetTestDir = path.join(targetDir, "test");
 
 module.exports = function(grunt) {
     require("jit-grunt")(grunt, {
-        eslint: "eslint-grunt"
     });
     require("time-grunt")(grunt);
 
@@ -19,7 +18,7 @@ module.exports = function(grunt) {
         },
         eslint: {
             options: {
-                config: "eslintrc.json"
+                configFile: "eslintrc.json"
             },
             server: {
                 files: [{

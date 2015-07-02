@@ -1,5 +1,3 @@
-/*eslint-env mocha */
-
 import {assert, expect, should} from "chai";
 should();
 
