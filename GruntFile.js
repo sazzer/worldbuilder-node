@@ -66,13 +66,11 @@ module.exports = function(grunt) {
                 }]
             }
         },
-        mochacli: {
+        mocha_istanbul: {
             test: {
+                src: targetTestDir,
                 options: {
-                    recursive: true,
-                    reporter: "spec",
-                    growl: true,
-                    files: [targetTestDir]
+                    coverageFolder: path.join(targetDir, "coverage")
                 }
             }
         },
@@ -102,7 +100,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask("build", ["eslint:server", "babel:server"]);
     grunt.registerTask("run", ["build", "env:server", "execute:server"]);
-    grunt.registerTask("test", ["build", "eslint:test", "babel:test", "env:server", "mochacli:test"]);
+    grunt.registerTask("test", ["build", "eslint:test", "babel:test", "env:server", "mocha_istanbul:test"]);
 
     grunt.registerTask("default", ["test"]);
 };
