@@ -23,7 +23,7 @@ module.exports = function(grunt) {
             },
             server: {
                 files: [{
-                    expand: true, 
+                    expand: true,
                     cwd: "src/server/main",
                     src: ["**/*.js"]
                 }]
@@ -33,7 +33,7 @@ module.exports = function(grunt) {
                     envs: ["mocha"]
                 },
                 files: [{
-                    expand: true, 
+                    expand: true,
                     cwd: "src/server/test",
                     src: ["**/*.js"]
                 }]
@@ -74,6 +74,23 @@ module.exports = function(grunt) {
                     clearRequireCache: true
                 },
                 src: [path.join(targetTestDir, "**/*.js")]
+            }
+        },
+        watch: {
+            test: {
+                files: [
+                    "package.json",
+                    "GruntFile.json",
+                    "src/server/main/**/*.js",
+                    "src/server/test/**/*.js",
+                ],
+                tasks: ['test'],
+                options: {
+                    spawn: true,
+                    interrupt: false,
+                    reload: false,
+                    atBegin: true
+                }
             }
         },
         execute: {

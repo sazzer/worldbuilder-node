@@ -35,6 +35,7 @@
     "grunt-execute": "~0.2.2",
     "chai": "~3.0.0",
     "mocha": "~2.2.5",
-    "grunt-mocha-test": "~0.12.7"
+    "grunt-mocha-test": "~0.12.7",
+    "grunt-contrib-watch": "~0.6.1"
   }
 }
