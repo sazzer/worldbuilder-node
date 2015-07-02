@@ -3,7 +3,7 @@ import {hello} from "hello";
 
 describe("Hello", () => {
     it("Should return Hello", () => {
-        expect(hello()).to.equal("Hello");
+        expect(hello("Graham")).to.equal("Hello, Graham");
     });
 });
 
