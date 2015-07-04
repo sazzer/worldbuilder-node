@@ -1,11 +1,4 @@
 import {assert, expect} from "chai";
-import {hello} from "hello";
-
-describe("Hello", () => {
-    it("Should return Hello", () => {
-        expect(hello("Graham")).to.equal("Hello, Graham");
-    });
-});
 
 describe("Array", function(){
   describe("#indexOf()", function(){
