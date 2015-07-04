@@ -1,16 +1,19 @@
-import senecaApp from "seneca";
-
 /**
- * Set up the Seneca instance
- * @return {Seneca} the Seneca instance
+ * Set up all of the Seneca Actions for the Debug service
+ * @param {Object} options the options for the plugin
+ * @param {String} options.root The Root to listen on for the HTTP API
  */
-export function setupSeneca() {
-    const seneca = senecaApp();
+export default function(options) {
+    const seneca = this;
+    const httpRoot = options.root;
 
-    seneca.use("actions/debug");
+    seneca.add({role: "debug", cmd: "ping"}, (args, done) => {
+        done(null, args);
+    });
+
     seneca.act("role:web", {use: {
       // define some routes that start with /my-api
-      prefix: "/api/debug",
+      prefix: httpRoot + "/debug",
 
       // use action patterns where role has the value "api" and cmd has some defined value
       pin: {role: "debug", cmd: "*"},
@@ -24,6 +27,4 @@ export function setupSeneca() {
         }
       }
     }});
-
-    return seneca;
 }
