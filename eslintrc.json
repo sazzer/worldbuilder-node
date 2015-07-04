@@ -23,7 +23,8 @@
         "no-var": 2,
         "quotes": [2, "double", "avoid-escape"],
         "no-console": 0,
-        "no-trailing-spaces": [2, {skipBlankLines: true}]
+        "no-trailing-spaces": [2, {"skipBlankLines": true}],
+        "no-unused-expressions": 1
     },
     "env": {
         "es6": true,
