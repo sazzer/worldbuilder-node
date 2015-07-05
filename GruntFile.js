@@ -91,6 +91,13 @@ module.exports = function(grunt) {
                 }
             }
         },
+        notify: {
+            running: {
+                options: {
+                    message: "Server is running"
+                }
+            }
+        },
         execute: {
             server: {
                 src: path.join(targetMainDir, "main.js")
@@ -99,7 +106,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask("build", ["eslint:server", "babel:server"]);
-    grunt.registerTask("run", ["build", "env:server", "execute:server"]);
+    grunt.registerTask("run", ["build", "env:server", "notify:running", "execute:server"]);
     grunt.registerTask("test", ["build", "eslint:test", "babel:test", "env:server", "mocha_istanbul:test"]);
 
     grunt.registerTask("default", ["test"]);

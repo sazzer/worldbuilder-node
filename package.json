@@ -38,6 +38,7 @@
     "grunt-eslint": "~16.0.0",
     "grunt-execute": "~0.2.2",
     "grunt-mocha-istanbul": "^2.4.0",
+    "grunt-notify": "^0.4.1",
     "istanbul": "^0.3.17",
     "jit-grunt": "~0.9.1",
     "mocha": "~2.2.5",

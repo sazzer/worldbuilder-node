@@ -1,0 +1,9 @@
+{
+    "verbose": true,
+    "ignore": [
+        ".git",
+        "node_modules",
+        "target/*"
+    ],
+    "ext": "js json"
+}
