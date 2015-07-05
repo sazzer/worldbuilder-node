@@ -1,4 +1,5 @@
 import moment from "moment-timezone";
+import {authenticated} from "seneca/authentication";
 
 /**
  * Set up all of the Seneca Actions for the Debug service
@@ -22,6 +23,10 @@ export default function(options) {
         });
     });
 
+    seneca.add({role: "debug", cmd: "whoami"}, (args, done) => {
+        done(null, {who: args.req$.user});
+    });
+
     seneca.act("role:web", {use: {
       // define some routes that start with /my-api
       prefix: httpRoot + "/debug",
@@ -38,6 +43,10 @@ export default function(options) {
         },
         now: {
             GET: true
+        },
+        whoami: {
+            GET: true,
+            premap: authenticated(["a", "b"])
         }
       }
     }});
