@@ -23,7 +23,9 @@
     "body-parser": "^1.13.1",
     "express": "^4.13.0",
     "moment-timezone": "^0.4.0",
-    "seneca": "^0.6.2"
+    "seneca": "^0.6.2",
+    "source-map-support": "^0.3.2",
+    "string": "^3.3.0"
   },
   "devDependencies": {
     "babel-eslint": "~3.1.20",
