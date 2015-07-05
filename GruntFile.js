@@ -73,6 +73,9 @@ module.exports = function(grunt) {
                     require: [
                         path.join(targetTestDir, "setup.js"),
                     ],
+                    mochaOptions: [
+                        "--growl"
+                    ],
                     coverageFolder: path.join(targetDir, "coverage")
                 }
             }
