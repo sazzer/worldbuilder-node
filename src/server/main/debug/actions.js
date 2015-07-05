@@ -1,3 +1,5 @@
+import moment from "moment-timezone";
+
 /**
  * Set up all of the Seneca Actions for the Debug service
  * @param {Object} options the options for the plugin
@@ -9,6 +11,15 @@ export default function(options) {
 
     seneca.add({role: "debug", cmd: "ping"}, (args, done) => {
         done(null, args);
+    });
+
+    seneca.add({role: "debug", cmd: "now"}, (args, done) => {
+        const tz = args.tz || "UTC";
+
+        done(null, {
+            tz,
+            now: moment().tz(tz).format()
+        });
     });
 
     seneca.act("role:web", {use: {
@@ -24,6 +35,9 @@ export default function(options) {
         ping: {
             GET: true,
             POST: true
+        },
+        now: {
+            GET: true
         }
       }
     }});
