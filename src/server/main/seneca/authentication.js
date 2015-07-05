@@ -1,4 +1,5 @@
 import string from "string";
+import {senecaAsPromised} from "seneca/promised";
 
 /** The name of the Authorization header */
 const AUTHORIZATION_HEADER = "Authorization";
@@ -28,26 +29,28 @@ export function authenticated(scopes = []) {
         } else {
             // We have an Access Token. Let's work with it
             const token = authorization.chompLeft(BEARER_PREFIX);
-            if (token.s !== "1234") {
-                res.status(403).send({
-                    "error": "INVALID_TOKEN"
-                });
-            } else {
-                const userScopes = ["a", "b"];
-                const missingScopes = scopes.filter((v) => userScopes.indexOf(v) < 0);
+            senecaAsPromised(req.seneca, {
+                role: "token",
+                cmd: "lookup",
+                token: token.s
+                }).then((accessToken) => {
+                    const missingScopes = scopes.filter((v) =>
+                        accessToken.scopes.indexOf(v) < 0);
 
-                if (missingScopes.length > 0) {
-                    res.status(403).send({
-                        "error": "UNAUTHORIZED",
-                        "scopes": {
-                            "required": scopes,
-                            "missing": missingScopes
-                        }
-                    });
-                } else {
-                    next();
-                }
-            }
+                    if (missingScopes.length > 0) {
+                        res.status(403).send({
+                            "error": "UNAUTHORIZED",
+                            "scopes": {
+                                "required": scopes,
+                                "missing": missingScopes
+                            }
+                        });
+                    } else {
+                        next();
+                    }
+                }).catch((error) => {
+                    res.status(403).send({error: error.orig.code});
+                });
         }
     };
 }
