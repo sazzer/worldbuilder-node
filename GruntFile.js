@@ -68,8 +68,11 @@ module.exports = function(grunt) {
         },
         mocha_istanbul: {
             test: {
-                src: targetTestDir,
+                src: path.join(targetTestDir, "**", "*.spec.js"),
                 options: {
+                    require: [
+                        path.join(targetTestDir, "setup.js"),
+                    ],
                     coverageFolder: path.join(targetDir, "coverage")
                 }
             }
