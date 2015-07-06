@@ -1,3 +1,4 @@
+/* eslint-env mocha */
 import {expect} from "chai";
 import sinon from "sinon";
 import {senecaAsPromised} from "seneca/promised";
