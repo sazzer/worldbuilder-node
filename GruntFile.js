@@ -17,6 +17,18 @@ module.exports = function(grunt) {
                 src: targetDir
             }
         },
+        copy: {
+            schema: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: "src/server/schema",
+                        src: "**/*",
+                        dest: path.join(targetMainDir, "schema")
+                    }
+                ]
+            }
+        },
         eslint: {
             options: {
                 configFile: ".eslintrc"
@@ -111,7 +123,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask("build", ["eslint:server", "babel:server"]);
+    grunt.registerTask("build", ["eslint:server", "babel:server", "copy:schema"]);
     grunt.registerTask("run", ["build", "env:server", "notify:running", "execute:server"]);
     grunt.registerTask("test", ["build", "eslint:test", "babel:test", "env:server", "mocha_istanbul:test"]);
 

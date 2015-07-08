@@ -25,7 +25,8 @@
     "moment-timezone": "^0.4.0",
     "seneca": "^0.6.2",
     "source-map-support": "^0.3.2",
-    "string": "^3.3.0"
+    "string": "^3.3.0",
+    "connect-static-file": "~1.0.3"
   },
   "devDependencies": {
     "babel-eslint": "~3.1.20",
@@ -47,6 +48,7 @@
     "mocha": "~2.2.5",
     "proxyquire": "^1.5.0",
     "sinon": "^1.15.4",
-    "time-grunt": "~1.2.1"
+    "time-grunt": "~1.2.1",
+    "grunt-contrib-copy": "~0.8.0"
   }
 }

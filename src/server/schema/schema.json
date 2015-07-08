@@ -1,0 +1,29 @@
+{
+    "$schema": "http://json-schema.org/draft-04/hyper-schema#",
+    "id": "https://worldbuilder.org/api/schema#",
+    "title": "Worldbuilder API",
+    "description": "The Worldbuilder API allows developers to build their own services working with the Worldbuilder platform",
+    "type": [
+        "object"
+    ],
+    "definitions": {
+
+    },
+    "properties": {
+
+    },
+    "links": [
+        {
+            "rel": "self",
+            "href": "https://worldbuilder.org/api"
+        },
+        {
+            "rel": "self",
+            "method": "GET",
+            "href": "/schema",
+            "targetSchema": {
+                "additionalProperties": true
+            }
+        }
+    ]
+}
