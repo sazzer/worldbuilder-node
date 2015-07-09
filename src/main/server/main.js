@@ -10,7 +10,8 @@ sourceMapSupport.install();
 // Firstly, set up Seneca for all of the actual microservices
 const seneca = senecaApp();
 seneca.use("accessToken/service")
-    .use("debug/actions", {root: "/api"});
+    .use("debug/actions", {root: "/api"})
+    .use("worlds/rest", {root: "/api"});
 
 // Now set up Express to handle the HTTP side of things
 const app = express();
