@@ -22,7 +22,7 @@ module.exports = function(grunt) {
                 files: [
                     {
                         expand: true,
-                        cwd: "src/server/schema",
+                        cwd: "src/main/schema",
                         src: "**/*",
                         dest: path.join(targetMainDir, "schema")
                     }
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
             server: {
                 files: [{
                     expand: true,
-                    cwd: "src/server/main",
+                    cwd: "src/main/server",
                     src: ["**/*.js"]
                 }]
             },
@@ -46,7 +46,7 @@ module.exports = function(grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: "src/server/test",
+                    cwd: "src/test/server",
                     src: ["**/*.js"]
                 }]
             }
@@ -64,7 +64,7 @@ module.exports = function(grunt) {
             server: {
                 files: [{
                     expand: true,
-                    cwd: "src/server/main",
+                    cwd: "src/main/server",
                     src: ["**/*.js"],
                     dest: targetMainDir
                 }]
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
             test: {
                 files: [{
                     expand: true,
-                    cwd: "src/server/test",
+                    cwd: "src/test/server",
                     src: ["**/*.js"],
                     dest: targetTestDir
                 }]
@@ -97,8 +97,8 @@ module.exports = function(grunt) {
                 files: [
                     "package.json",
                     "GruntFile.json",
-                    "src/server/main/**/*.js",
-                    "src/server/test/**/*.js",
+                    "src/main/server/**/*.js",
+                    "src/test/server/**/*.js",
                 ],
                 tasks: ['test'],
                 options: {
