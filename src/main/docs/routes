@@ -1,0 +1,18 @@
+/users
+    /{id}
+        /worlds
+/pageTypes
+    /{id}
+/worlds
+    /{id}
+        /files
+            /{id}
+                /history
+        /templates
+            /{id}
+        /pages
+            /{id}
+                /history
+        /characters
+            /{id}
+                /history
