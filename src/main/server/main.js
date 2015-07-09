@@ -11,6 +11,8 @@ sourceMapSupport.install();
 const seneca = senecaApp();
 seneca.use("accessToken/service")
     .use("debug/actions", {root: "/api"})
+    .use("worlds/dal")
+    .use("worlds/service")
     .use("worlds/rest", {root: "/api"});
 
 // Now set up Express to handle the HTTP side of things

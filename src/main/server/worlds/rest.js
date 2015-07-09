@@ -1,3 +1,8 @@
+/** The layer that this file provides */
+const LAYER = "rest";
+/** The stack that this file is for */
+const STACK = "worlds";
+
 /**
  * Set up all of the Seneca Actions for the REST layer of the Worlds stack
  * @param {Object} options the options for the plugin
@@ -7,45 +12,51 @@ export default function(options) {
     const seneca = this;
     const httpRoot = options.root;
 
-    seneca.add({layer: "rest", stack: "worlds", cmd: "collection"}, (args, done) => {
-        console.log(args);
-        if (args.req$.method === "GET") {
-            seneca.act({
-                layer: "service",
-                stack: "worlds",
-                cmd: "list"
-                }, done);
-        } else if (args.req$.method === "POST") {
-            seneca.act({
-                layer: "service",
-                stack: "worlds",
-                cmd: "create"
-                }, done);
-        } else {
-            done({error: "UNSUPPORTED_OPERATION"});
-        }
+    seneca.add({layer: LAYER, stack: STACK, cmd: "list"}, (args, done) => {
+        seneca.act({
+            layer: "service",
+            stack: STACK,
+            cmd: "list"
+        }, done);
     });
 
-    seneca.add({layer: "rest", stack: "worlds", cmd: "item"}, (args, done) => {
+    seneca.add({layer: LAYER, stack: STACK, cmd: "get"}, (args, done) => {
+        done(null, args);
+    });
+
+    seneca.add({layer: LAYER, stack: STACK, cmd: "create"}, (args, done) => {
+        done(null, args);
+    });
+
+    seneca.add({layer: LAYER, stack: STACK, cmd: "update"}, (args, done) => {
+        done(null, args);
+    });
+
+    seneca.add({layer: LAYER, stack: STACK, cmd: "delete"}, (args, done) => {
         done(null, args);
     });
 
     seneca.act("role:web", {use: {
       prefix: httpRoot,
-      pin: {layer: "rest", stack: "worlds", cmd: "*"},
+      pin: {layer: LAYER, stack: STACK, cmd: "*"},
       map: {
-          "collection": {
+          "list": {
               GET: true,
-              POST: {
-                  useparams: false,
-                  usequery: false,
-                  dataprop: true
-              },
               alias: "/worlds"
           },
-          "item": {
+          "get": {
               GET: true,
+              alias: "/worlds/:id"
+          },
+          "create": {
+              POST: true,
+              alias: "/worlds"
+          },
+          "update": {
               PUT: true,
+              alias: "/worlds/:id"
+          },
+          "delete": {
               DELETE: true,
               alias: "/worlds/:id"
           }
