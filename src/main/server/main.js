@@ -9,6 +9,8 @@ import morgan from "morgan";
 import responseTime from "response-time";
 import errorHandler from "errorhandler";
 
+import {configureRoutes as configureDebugRoutes} from "debug/routes";
+
 sourceMapSupport.install();
 
 // Now set up Express to handle the HTTP side of things
@@ -35,6 +37,8 @@ const router = express.Router({
 router.get("/worlds", (req, res) => {
     res.send({hello: "world"});
 });
+
+configureDebugRoutes(router);
 
 app.use("/api", router);
 
