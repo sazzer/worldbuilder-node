@@ -1,4 +1,5 @@
 import moment from "moment-timezone";
+import path from "path";
 
 /**
  * Configure the touter for this stack
@@ -19,5 +20,9 @@ export function configureRoutes(router) {
         res.send({
             query: req.query
         });
+    });
+
+    router.get("/debug/version", (req, res) => {
+        res.sendFile(path.join(__dirname, "..", "build.json"));
     });
 }
