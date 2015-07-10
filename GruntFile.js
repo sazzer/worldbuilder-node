@@ -29,6 +29,28 @@ module.exports = function(grunt) {
                 ]
             }
         },
+        githash: {
+            main: {
+                options: {
+
+                },
+            }
+        },
+        json_generator: {
+            server: {
+                dest: path.join(targetMainDir, "build.json"),
+                options: {
+                    name: "<%= pkg.name %>",
+                    version: "<%= pkg.version %>",
+                    build: new Date(),
+                    git: {
+                        hash: "<%= githash.main.hash %>",
+                        tag: "<%= githash.main.tag %>",
+                        branch: "<%= githash.main.branch %>"
+                    }
+                }
+            }
+        },
         eslint: {
             options: {
                 configFile: ".eslintrc"

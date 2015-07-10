@@ -21,12 +21,15 @@
   "dependencies": {
     "babel-runtime": "~5.6.15",
     "body-parser": "^1.13.1",
+    "compression": "^1.5.1",
+    "connect-static-file": "~1.0.3",
+    "errorhandler": "^1.4.1",
     "express": "^4.13.0",
     "moment-timezone": "^0.4.0",
-    "seneca": "^0.6.2",
+    "morgan": "^1.6.1",
+    "response-time": "^2.3.1",
     "source-map-support": "^0.3.2",
-    "string": "^3.3.0",
-    "connect-static-file": "~1.0.3"
+    "string": "^3.3.0"
   },
   "devDependencies": {
     "babel-eslint": "~3.1.20",
@@ -49,6 +52,8 @@
     "proxyquire": "^1.5.0",
     "sinon": "^1.15.4",
     "time-grunt": "~1.2.1",
-    "grunt-contrib-copy": "~0.8.0"
+    "grunt-contrib-copy": "~0.8.0",
+    "grunt-json-generator": "~0.1.0",
+    "grunt-githash": "~0.1.1"
   }
 }
