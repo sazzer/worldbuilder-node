@@ -26,4 +26,16 @@ app.use("/api/schema", staticFile(path.join(__dirname, "schema", "schema.json"),
     lastModified: true
 }));
 
+const router = express.Router({
+    caseSensitive: true,
+    mergeParams: false,
+    strict: false
+});
+
+router.get("/worlds", (req, res) => {
+    res.send({hello: "world"});
+});
+
+app.use("/api", router);
+
 app.listen(3000);
