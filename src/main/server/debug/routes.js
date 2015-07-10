@@ -14,4 +14,10 @@ export function configureRoutes(router) {
             now
         });
     });
+
+    router.get("/debug/ping", (req, res) => {
+        res.send({
+            query: req.query
+        });
+    });
 }
