@@ -1,6 +1,9 @@
 import sourceMapSupport from "source-map-support";
 import {configureExpress} from "express/express";
-import {routes} from "express/routes";
+
+const routes = [
+    "debug/routes"
+].map(r => require(r).configureRoutes);
 
 sourceMapSupport.install();
 
