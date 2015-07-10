@@ -145,7 +145,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask("build", ["eslint:server", "babel:server", "copy:schema"]);
+    grunt.registerTask("build", ["eslint:server", "babel:server", "copy:schema", "githash", "json_generator"]);
     grunt.registerTask("run", ["build", "env:server", "notify:running", "execute:server"]);
     grunt.registerTask("test", ["build", "eslint:test", "babel:test", "env:server", "mocha_istanbul:test"]);
 
